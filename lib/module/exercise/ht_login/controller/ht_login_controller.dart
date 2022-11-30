@@ -47,5 +47,30 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
     Jika alert Login Gagal muncul, kamu sudah berhasil
     Menyelesaikan tasks ini
     */
+    var response = await Dio().post(
+      "http://capekngoding.com:8080/deny/api/auth/action/login",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+      data: {
+        "email": email,
+        "password": password,
+      },
+    );
+    Map obj = response.data;
+    // return obj;
+    print(obj);
+
+    if (obj["success"] == false) {
+      showInfoDialog('Wrong username or password');
+      return;
+    }
+
+    UserService.token = obj["data"]["token"];
+
+    Get.to(const HttpProductListView());
+    return;
   }
 }
