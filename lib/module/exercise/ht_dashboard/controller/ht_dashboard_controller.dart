@@ -101,6 +101,17 @@ class HtDashboardController extends State<HtDashboardView>
 
     3. Panggil setState setelah-nya
     */
+    var response = await Dio().get(
+      '${AppConfig.baseUrl}/products',
+      options: Options(
+        headers: {
+          'Content-Type': 'Application/json',
+        },
+      ),
+    );
+    Map obj = response.data;
+    productList = obj["data"];
+    setState(() {});
   }
 
   loadProductCategories() async {

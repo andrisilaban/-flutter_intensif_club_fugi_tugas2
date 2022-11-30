@@ -48,7 +48,7 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
     Menyelesaikan tasks ini
     */
     var response = await Dio().post(
-      "http://capekngoding.com:8080/deny/api/auth/action/login",
+      "http://capekngoding.com:8080/andri/api/auth/action/login",
       options: Options(
         headers: {
           "Content-Type": "application/json",
