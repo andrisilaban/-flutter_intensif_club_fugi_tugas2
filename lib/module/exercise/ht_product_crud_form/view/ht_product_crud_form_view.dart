@@ -18,8 +18,10 @@ class HtProductCrudFormView extends StatefulWidget {
   16. ok, bagus lanjut ke point 17
   buka HtProductCrudFormController
   */
+  final Map? item;
   const HtProductCrudFormView({
     Key? key,
+    required this.item,
   }) : super(key: key);
 
   Widget build(context, HtProductCrudFormController controller) {
@@ -47,7 +49,7 @@ class HtProductCrudFormView extends StatefulWidget {
           child: Container(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              children: const [
+              children: [
                 /*
                 TODO: --
                 2. buat variabel photo, productName dan price
@@ -120,6 +122,38 @@ class HtProductCrudFormView extends StatefulWidget {
                 lanjut ke point 25
                 (cek bagian kode yang memiliki InkWell di dalam ListViewBuilder)
                 */
+                QImagePicker(
+                  label: 'photo',
+                  value: controller.photo,
+                  validator: Validator.required,
+                  onChanged: (value) {
+                    controller.photo = value;
+                  },
+                ),
+                QTextField(
+                  label: 'Product Name',
+                  value: controller.productName,
+                  validator: Validator.required,
+                  onChanged: (value) {
+                    controller.productName = value;
+                  },
+                ),
+                QNumberField(
+                  label: 'Price Name',
+                  value: controller.price.toString(),
+                  validator: Validator.required,
+                  onChanged: (value) {
+                    controller.price = double.parse(value);
+                  },
+                ),
+                QMemoField(
+                  label: 'Description',
+                  value: controller.description,
+                  validator: Validator.required,
+                  onChanged: (value) {
+                    controller.description = value;
+                  },
+                )
               ],
             ),
           ),

@@ -29,7 +29,9 @@ class HtProductCrudListView extends StatefulWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () async {
-          await Get.to(const HtProductCrudFormView());
+          await Get.to(const HtProductCrudFormView(
+            item: {},
+          ));
           await controller.loadProducts();
         },
       ),
@@ -126,6 +128,10 @@ class HtProductCrudListView extends StatefulWidget {
                       Buka HtProductCrudFormController:
                       lanjut ke point 27
                       */
+                      await Get.to(HtProductCrudFormView(
+                        item: item,
+                      ));
+                      controller.loadProducts();
                     },
                     child: Card(
                       child: ListTile(
