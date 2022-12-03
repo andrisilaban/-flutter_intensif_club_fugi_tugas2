@@ -1,3 +1,4 @@
+import 'package:example/config.dart';
 import 'package:example/core.dart';
 import 'package:flutter/material.dart';
 
@@ -48,7 +49,7 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
     Menyelesaikan tasks ini
     */
     var response = await Dio().post(
-      "http://capekngoding.com:8080/andri/api/auth/action/login",
+      "${AppConfig.baseUrl}/auth/action/login",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -63,10 +64,15 @@ class HtLoginController extends State<HtLoginView> implements MvcController {
     // return obj;
     print(obj);
 
-    if (obj["success"] == false) {
-      showInfoDialog('Wrong username or password');
-      return;
+    if (obj["success"] == true) {
+      showInfoDialog("Login success!");
+    } else {
+      showInfoDialog("Login gagal!");
     }
+    // if (obj["success"] == false) {
+    //   showInfoDialog('Wrong username or password');
+    //   return;
+    // }
 
     UserService.token = obj["data"]["token"];
 

@@ -14,6 +14,7 @@ class HtStatisticCardController extends State<HtStatisticCardView>
   @override
   void initState() {
     instance = this;
+    loadProductCount();
     /*
     4. Panggil function loadProductCount() di dalam initState
     5. Klik tombol refresh, jika data pada statistic berubah,
@@ -46,6 +47,22 @@ class HtStatisticCardController extends State<HtStatisticCardView>
 
     3. Panggil setState setelah-nya
     */
+
+    // var response = await Dio().get(
+    //   "https://reqres.in/api/users",
+    //   options: Options(
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   ),
+    // );
+    // Map obj = response.data;
+    var response = await Dio().get(
+      '${AppConfig.baseUrl}/products/action/count',
+    );
+    Map obj = response.data;
+    productCount = obj['data_count'];
+    setState(() {});
   }
 
   refresh() async {

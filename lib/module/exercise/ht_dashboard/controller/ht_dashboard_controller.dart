@@ -10,6 +10,9 @@ class HtDashboardController extends State<HtDashboardView>
   late HtDashboardView view;
 
   loadData() async {
+    await loadProducts();
+    await loadProductCategories();
+    setState(() {});
     /*
     7. Panggil function "await loadProducts()" di dalam function loadData
     8. Panggil function "await loadProductCategories" di function loadData
@@ -131,5 +134,17 @@ class HtDashboardController extends State<HtDashboardView>
 
     6. Panggil setState setelah-nya
     */
+
+    var response = await Dio().get(
+      '${AppConfig.baseUrl}/product-categories',
+      options: Options(
+        headers: {
+          'Content-Type': 'application-json',
+        },
+      ),
+    );
+    Map obj = response.data;
+    productCategoryList = obj['data'];
+    setState(() {});
   }
 }
