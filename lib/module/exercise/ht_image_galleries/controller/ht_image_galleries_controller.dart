@@ -166,6 +166,7 @@ class HtImageGalleriesController extends State<HtImageGalleriesView>
     var url = data["url"];
     await addImage(url);
     await loadImageGalleries();
+    hideLoading();
   }
 
   doUploadAndroidIosAndWeb() async {

@@ -68,6 +68,22 @@ class LsLoginFormWithHistoryView extends StatefulWidget {
               Selamat tasks ini selesai!
               */
               //---------------------------------
+              QTextField(
+                label: 'Email',
+                value: controller.email,
+                onChanged: (value) {
+                  controller.email = value;
+                  controller.saveToLocalStorage();
+                },
+              ),
+              QTextField(
+                label: 'Password',
+                value: controller.password,
+                onChanged: (value) {
+                  controller.password = value;
+                  controller.saveToLocalStorage();
+                },
+              ),
               const SizedBox(
                 height: 20.0,
               ),
